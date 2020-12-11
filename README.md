@@ -1,5 +1,5 @@
 # horse-rpc
-horse-rpc是基于腾讯tars rpc框架基础上修改过来的  
+horse-rpc是基于腾讯[tars rpc](https://github.com/TarsCloud/TarsCpp)框架基础上修改过来的  
 1,去除了一些依赖类，比如用c++11的智能指针shared_ptr全部替换掉TC_AutoPtr  
 2,去除了里面的多平台支持，只支持linux平台  
 3,去除了框架里面的跟tars框架基础服务交互的代码  
