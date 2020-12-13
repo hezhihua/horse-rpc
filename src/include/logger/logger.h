@@ -27,10 +27,15 @@ using namespace std;
 #define TLOGERROR(x)  do{stringstream ss; ss<<x;LOG_ERROR(ss.str())}while(0);
 #define TLOGTARS(x)  do{stringstream ss; ss<<x;LOG_INFO(string("[fram") + string("]")+ss.str())}while(0);
 
-#define TLOGINFO_RAFT(x)  do{stringstream ss; ss<<x;LOG_INFO(string("[raft") + string("]")+ss.str())}while(0);
-#define TLOGDEBUG_RAFT(x)  do{stringstream ss; ss<<x;LOG_DEBUG(string("[raft") + string("]")+ss.str())}while(0);
-#define TLOGWARN_RAFT(x)  do{stringstream ss; ss<<x;TLOGWARN(string("[raft") + string("]")+ss.str())}while(0);
-#define TLOGERROR_RAFT(x)  do{stringstream ss; ss<<x;LOG_ERROR(string("[raft") + string("]")+ss.str())}while(0);
+#define LOGRAFT_INFO(x)  Logger::getInstance()->getRaftLogger()->info(__FILE__LINE__FUNCTION__+(x));
+#define LOGRAFT_DEBUG(x) Logger::getInstance()->getRaftLogger()->debug(__FILE__LINE__FUNCTION__+(x));
+#define LOGRAFT_WARN(x) Logger::getInstance()->getRaftLogger()->warn(__FILE__LINE__FUNCTION__+(x));
+#define LOGRAFT_ERROR(x) Logger::getInstance()->getRaftLogger()->error(__FILE__LINE__FUNCTION__+(x));
+
+#define TLOGINFO_RAFT(x)  do{stringstream ss; ss<<x;LOGRAFT_INFO(string("[raft") + string("]")+ss.str())}while(0);
+#define TLOGDEBUG_RAFT(x)  do{stringstream ss; ss<<x;LOGRAFT_DEBUG(string("[raft") + string("]")+ss.str())}while(0);
+#define TLOGWARN_RAFT(x)  do{stringstream ss; ss<<x;LOGRAFT_WARN(string("[raft") + string("]")+ss.str())}while(0);
+#define TLOGERROR_RAFT(x)  do{stringstream ss; ss<<x;LOGRAFT_ERROR(string("[raft") + string("]")+ss.str())}while(0);
 
 namespace horsedb{
 
@@ -38,11 +43,13 @@ class Logger: public TC_Singleton<Logger>{
 
     public:
 
-    void init(const string& sExeName,const string& sLogPathName)
+    void init(const string& sExeName,const string& sLogPathName,const string& sRaftLogPathName)
     {
         _sExeName=sExeName;
         _sLogPathName=sLogPathName;
+        _sLogRaftPathName=sRaftLogPathName;
         _async_logger =  spdlog::rotating_logger_mt<spdlog::async_factory>(sExeName, sLogPathName, 1024 * 1024 * 5, 3);
+        _async_raft_logger=  spdlog::rotating_logger_mt<spdlog::async_factory>(sExeName, sRaftLogPathName, 1024 * 1024 * 5, 3);
         spdlog::set_level(spdlog::level::debug);
 	    //async_logger->flush_on(spdlog::level::info);
         spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e][t:%t][%L]%v");
@@ -51,13 +58,16 @@ class Logger: public TC_Singleton<Logger>{
     }
 
     const std::shared_ptr<spdlog::logger>& getLogger() const { return _async_logger;}
+    const std::shared_ptr<spdlog::logger>& getRaftLogger() const { return _async_raft_logger;}
 
 
     
     std::shared_ptr<spdlog::logger> _async_logger;
+    std::shared_ptr<spdlog::logger> _async_raft_logger;
 
     string _sExeName;
     string _sLogPathName;
+    string _sLogRaftPathName;
 
 
 };    
