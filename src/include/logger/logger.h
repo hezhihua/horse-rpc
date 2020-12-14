@@ -32,10 +32,10 @@ using namespace std;
 #define LOGRAFT_WARN(x) Logger::getInstance()->getRaftLogger()->warn(__FILE__LINE__FUNCTION__+(x));
 #define LOGRAFT_ERROR(x) Logger::getInstance()->getRaftLogger()->error(__FILE__LINE__FUNCTION__+(x));
 
-#define TLOGINFO_RAFT(x)  do{stringstream ss; ss<<x;LOGRAFT_INFO(string("[raft") + string("]")+ss.str())}while(0);
-#define TLOGDEBUG_RAFT(x)  do{stringstream ss; ss<<x;LOGRAFT_DEBUG(string("[raft") + string("]")+ss.str())}while(0);
-#define TLOGWARN_RAFT(x)  do{stringstream ss; ss<<x;LOGRAFT_WARN(string("[raft") + string("]")+ss.str())}while(0);
-#define TLOGERROR_RAFT(x)  do{stringstream ss; ss<<x;LOGRAFT_ERROR(string("[raft") + string("]")+ss.str())}while(0);
+#define TLOGINFO_RAFT(x)  do{stringstream ss; ss<<x;LOGRAFT_INFO(ss.str())}while(0);
+#define TLOGDEBUG_RAFT(x)  do{stringstream ss; ss<<x;LOGRAFT_DEBUG(ss.str())}while(0);
+#define TLOGWARN_RAFT(x)  do{stringstream ss; ss<<x;LOGRAFT_WARN(ss.str())}while(0);
+#define TLOGERROR_RAFT(x)  do{stringstream ss; ss<<x;LOGRAFT_ERROR(ss.str())}while(0);
 
 namespace horsedb{
 
