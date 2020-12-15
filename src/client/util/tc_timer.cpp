@@ -20,6 +20,11 @@ void TC_Timer::startTimer(int numThread)
 	_tpool.exec(std::bind(&TC_Timer::run, this));
 }
 
+bool TC_Timer::isTerminate()
+{
+	return _terminate;
+}
+
 void TC_Timer::stopTimer()
 {
 	{

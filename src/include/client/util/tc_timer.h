@@ -66,6 +66,8 @@ public:
 	 */
 	void stopTimer();
 
+	bool isTerminate();
+
 	/**
 	 * @brief 指定fireMillseconds时间执行
 	 * @param fireMillseconds, 触发时间(毫秒)
