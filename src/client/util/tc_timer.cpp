@@ -24,11 +24,16 @@ void TC_Timer::stopTimer()
 {
 	{
 		std::unique_lock <std::mutex> lck(_mutex);
-		_terminate = true;
 		_cond.notify_all();
 	}
 
-	_tpool.stop();
+	if (!_terminate)
+	{
+		_tpool.stop();
+		_terminate=true;
+	}
+	
+	
 }
 
 void TC_Timer::erase(int64_t uniqId)
