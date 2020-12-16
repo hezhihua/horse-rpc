@@ -34,7 +34,7 @@ class ServantManager:public TC_Singleton<ServantManager> {
         if ( it!=_mapServant.end())
         {
             ptr=_mapServant[name];
-            return false;
+            return true;
         }
         return false;
     }
