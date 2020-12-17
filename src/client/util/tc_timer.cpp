@@ -34,8 +34,9 @@ void TC_Timer::stopTimer()
 
 	if (!_terminate)
 	{
-		_tpool.stop();
 		_terminate=true;
+		_tpool.stop();
+		
 	}
 	
 	
