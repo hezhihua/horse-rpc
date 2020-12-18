@@ -25,7 +25,7 @@ using namespace std;
 #define TLOGINFO(x)  do{stringstream ss; ss<<x;LOG_INFO(ss.str())}while(0);
 #define TLOGWARN(x)  do{stringstream ss; ss<<x;LOG_WARN(ss.str())}while(0);
 #define TLOGERROR(x)  do{stringstream ss; ss<<x;LOG_ERROR(ss.str())}while(0);
-#define TLOGTARS(x)  do{stringstream ss; ss<<x;LOG_INFO(string("[fram") + string("]")+ss.str())}while(0);
+#define TLOGTARS(x)  do{stringstream ss; ss<<x;LOG_INFO(string("[fram]") +ss.str())}while(0);
 
 #define LOGRAFT_INFO(x)  Logger::getInstance()->getRaftLogger()->info(__FILE__LINE__FUNCTION__+(x));
 #define LOGRAFT_DEBUG(x) Logger::getInstance()->getRaftLogger()->debug(__FILE__LINE__FUNCTION__+(x));
