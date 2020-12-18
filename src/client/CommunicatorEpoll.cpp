@@ -210,6 +210,12 @@ void CommunicatorEpoll::handle(FDInfo * pFDInfo, const epoll_event &ev)
             {
                 while(pInfoQueue->pop_front(msg))
                 {
+                    if (msg==NULL)
+                    {
+                        TLOGERROR("pop_front msg is null"<<endl);
+                        return ;
+                    }
+                    
                     //线程退出了
                     if(ReqMessage::THREAD_EXIT == msg->eType)
                     {

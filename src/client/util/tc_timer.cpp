@@ -34,6 +34,7 @@ void TC_Timer::stopTimer()
 
 	if (!_terminate)
 	{
+		//modify by hzh：要设置为true才能stop，不然线程不会退出,stop会阻塞
 		_terminate=true;
 		_tpool.stop();
 		
