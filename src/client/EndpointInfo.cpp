@@ -26,6 +26,10 @@ EndpointInfo::EndpointInfo()
 
 	memset(&_addr,0,sizeof(_addr));
 
+    _cmpDesc = createCompareDesc();
+
+    _desc = createDesc();
+
 }
 EndpointInfo::EndpointInfo(const string& host, uint16_t port, TC_Endpoint::EType type, int32_t grid, const string & setDivision, int qos, int weight, unsigned int weighttype, int authType)
 : _ep(host, port, 60000, type, grid, qos, weight, weighttype, authType)
