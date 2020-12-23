@@ -4,6 +4,7 @@ horse-rpc是基于腾讯[tars rpc](https://github.com/TarsCloud/TarsCpp)框架�
 2,去除了里面的多平台支持，只支持linux平台  
 3,去除了框架里面的跟tars框架基础服务交互的代码  
 4,日志库改用spdlog  
+5,配置文件改用yaml-cpp
 
 # 目录介绍
 | 目录名称 | 功能 |
@@ -19,12 +20,12 @@ horse-rpc是基于腾讯[tars rpc](https://github.com/TarsCloud/TarsCpp)框架�
 | spdlog版本 | 1.8.1版本 |
 # 编译和安装
 
-1,git clone https://github.com/hezhihua/horse-rpc.git  --recursive  
+1,git clone https://github.com/hezhihua/horse-rpc.git   
 2,cd horse-rpc  
 3,mkdir build && cd build && cmake ..  
 4,make  
 
-# TODO   
+# 二期   
 1,tars2cpp根据tars协议文件生成的代码有些地方不满足需求,需要修改tars2cpp工具生成目标代码,避免每次手工修改  
 
 
