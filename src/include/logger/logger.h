@@ -43,13 +43,25 @@ class Logger: public TC_Singleton<Logger>{
 
     public:
 
-    void init(const string& sExeName,const string& sLogPathName,const string& sRaftLogPathName)
+    void init(const string& sExeName,const string& sLogPathName,const string& sRaftLogPathName,const string& logLevel="info")
     {
         _sExeName=sExeName;
         _sLogPathName=sLogPathName;
         _sLogRaftPathName=sRaftLogPathName;
         _async_logger =  spdlog::rotating_logger_mt<spdlog::async_factory>(sExeName, sLogPathName, 1024 * 1024 * 5, 3);
         _async_raft_logger=  spdlog::rotating_logger_mt<spdlog::async_factory>(sExeName+"raft", sRaftLogPathName, 1024 * 1024 * 5, 3);
+        if (logLevel=="debug")
+        {
+            spdlog::set_level(spdlog::level::debug);
+        }
+        else if (logLevel=="info")
+        {
+            spdlog::set_level(spdlog::level::info);
+        }else
+        {
+            spdlog::set_level(spdlog::level::info);
+        }
+        
         spdlog::set_level(spdlog::level::debug);
 	    //async_logger->flush_on(spdlog::level::info);
         spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e][t:%t][%L]%v");
