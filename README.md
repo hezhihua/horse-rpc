@@ -26,7 +26,7 @@ horse-rpc是基于腾讯[tars rpc](https://github.com/TarsCloud/TarsCpp)框架�
 4,make  
 
 # 二期   
-1,tars2cpp根据tars协议文件生成的代码有些地方不满足需求,需要修改tars2cpp工具生成目标代码,避免每次手工修改  
+1,tars2cpp根据tars协议文件生成的代码有些地方不满足raft框架需求,需要修改tars2cpp工具生成目标代码,避免每次手工修改  
 
 
 # 学习和交流
